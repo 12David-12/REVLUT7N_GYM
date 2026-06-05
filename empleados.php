@@ -32,11 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errores = [];
 
     // VALIDACIONES
-    // Validar cédula
+    // Validar cédula ecuatoriana (exactamente 10 dígitos)
     if (empty($cedula)) {
         $errores[] = "La cédula es obligatoria";
-    } elseif (!preg_match('/^[0-9]{6,20}$/', $cedula)) {
-        $errores[] = "La cédula debe contener solo números (6-20 dígitos)";
+    } elseif (!preg_match('/^[0-9]{10}$/', $cedula)) {
+        $errores[] = "La cédula ecuatoriana debe contener exactamente 10 dígitos";
     }
 
     // Validar nombres (solo letras y espacios)
@@ -577,9 +577,9 @@ if ($resultado) {
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="cedula">Cédula * <span class="info-text">(Solo números)</span></label>
+                                <label for="cedula">Cédula Ecuatoriana * <span class="info-text">(10 dígitos)</span></label>
                                 <input type="text" id="cedula" name="cedula" 
-                                       placeholder="Ej: 12345678" maxlength="20"
+                                       placeholder="Ej: 0957152804" maxlength="10"
                                        value="<?php echo htmlspecialchars($_POST['cedula'] ?? ''); ?>">
                             </div>
 
@@ -769,11 +769,11 @@ if ($resultado) {
 
             let errores = [];
 
-            // Validar cédula
+            // Validar cédula ecuatoriana (exactamente 10 dígitos)
             if (!cedula) {
                 errores.push("La cédula es obligatoria");
-            } else if (!/^[0-9]{6,20}$/.test(cedula)) {
-                errores.push("La cédula debe contener solo números (6-20 dígitos)");
+            } else if (!/^[0-9]{10}$/.test(cedula)) {
+                errores.push("La cédula ecuatoriana debe contener exactamente 10 dígitos");
             }
 
             // Validar nombres
